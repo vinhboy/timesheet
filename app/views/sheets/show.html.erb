@@ -10,5 +10,33 @@
   <%= @sheet.rate %>
 </p>
 
+<h2>Line Items</h2>
+<% @sheet.line_items.each do |sheet| %>
+  <p>
+    <strong>Date:</strong>
+    <%= sheet.date %>
+  </p>
+ 
+  <p>
+    <strong>Minutes:</strong>
+    <%= sheet.minutes %>
+  </p>
+<% end %>
+
+<h2>Add a line item:</h2>
+<%= form_with(model: [ @sheet, @sheet.line_items.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :date %><br>
+    <%= form.date_field :date %>
+  </p>
+  <p>
+    <%= form.label :minutes %><br>
+    <%= form.text_field :minutes %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
 <%= link_to 'Edit', edit_sheet_path(@sheet) %> |
 <%= link_to 'Back', sheets_path %>

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_11_221323) do
+ActiveRecord::Schema.define(version: 2018_04_11_225214) do
+
+  create_table "line_items", force: :cascade do |t|
+    t.datetime "date"
+    t.integer "minutes"
+    t.integer "sheet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sheet_id"], name: "index_line_items_on_sheet_id"
+  end
 
   create_table "sheets", force: :cascade do |t|
     t.text "description"
